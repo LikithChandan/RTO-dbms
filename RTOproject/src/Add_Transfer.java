@@ -5,9 +5,14 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.Color;
+import javax.swing.ImageIcon;
 
 public class Add_Transfer
 {
@@ -19,6 +24,7 @@ public class Add_Transfer
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_5;
+	private JTextField textField_6;
 
 	/**
 	 * Launch the application.
@@ -57,83 +63,161 @@ public class Add_Transfer
 	{
 		frame = new JFrame();
 		frame.getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 20));
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 1200, 733);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
+
 		JLabel lblEnterTheTransfer = new JLabel("Enter the Transfer Details");
-		lblEnterTheTransfer.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblEnterTheTransfer.setBounds(106, 11, 242, 24);
+		lblEnterTheTransfer.setForeground(Color.WHITE);
+		lblEnterTheTransfer.setFont(new Font("Bodoni MT Black", Font.PLAIN, 32));
+		lblEnterTheTransfer.setBounds(352, 40, 461, 59);
 		frame.getContentPane().add(lblEnterTheTransfer);
-		
+
 		JLabel lblNewLabel = new JLabel("Transfer No :");
-		lblNewLabel.setBounds(61, 48, 86, 14);
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel.setBounds(401, 170, 130, 36);
 		frame.getContentPane().add(lblNewLabel);
-		
+
 		textField = new JTextField();
-		textField.setBounds(145, 43, 86, 20);
+		textField.setForeground(Color.BLACK);
+		textField.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		textField.setBounds(543, 171, 179, 36);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
-		
+
 		JLabel lblBid = new JLabel("BID :");
-		lblBid.setBounds(61, 71, 46, 14);
+		lblBid.setForeground(Color.WHITE);
+		lblBid.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblBid.setBounds(401, 219, 86, 35);
 		frame.getContentPane().add(lblBid);
-		
+
 		JLabel lblSid = new JLabel("SID :");
-		lblSid.setBounds(61, 96, 46, 14);
+		lblSid.setForeground(Color.WHITE);
+		lblSid.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblSid.setBounds(401, 267, 66, 33);
 		frame.getContentPane().add(lblSid);
-		
+
 		JLabel lblRegNo = new JLabel("Reg No :");
-		lblRegNo.setBounds(61, 119, 60, 14);
+		lblRegNo.setForeground(Color.WHITE);
+		lblRegNo.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblRegNo.setBounds(401, 313, 118, 36);
 		frame.getContentPane().add(lblRegNo);
-		
+
 		JLabel lblFuel = new JLabel("Fuel :");
-		lblFuel.setBounds(61, 146, 46, 14);
+		lblFuel.setForeground(Color.WHITE);
+		lblFuel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblFuel.setBounds(401, 362, 86, 36);
 		frame.getContentPane().add(lblFuel);
-		
-		JLabel lblBody = new JLabel("Body :");
-		lblBody.setBounds(61, 171, 46, 14);
+
+		JLabel lblBody = new JLabel("Date :");
+		lblBody.setForeground(Color.WHITE);
+		lblBody.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblBody.setBounds(401, 411, 86, 36);
 		frame.getContentPane().add(lblBody);
-		
+
 		textField_1 = new JTextField();
-		textField_1.setBounds(145, 68, 86, 20);
+		textField_1.setForeground(Color.BLACK);
+		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		textField_1.setBounds(543, 219, 179, 36);
 		frame.getContentPane().add(textField_1);
 		textField_1.setColumns(10);
-		
+
 		textField_2 = new JTextField();
-		textField_2.setBounds(145, 93, 86, 20);
+		textField_2.setForeground(Color.BLACK);
+		textField_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		textField_2.setBounds(543, 267, 179, 36);
 		frame.getContentPane().add(textField_2);
 		textField_2.setColumns(10);
-		
+
 		textField_3 = new JTextField();
-		textField_3.setBounds(145, 118, 86, 20);
+		textField_3.setForeground(Color.BLACK);
+		textField_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		textField_3.setBounds(543, 316, 179, 36);
 		frame.getContentPane().add(textField_3);
 		textField_3.setColumns(10);
-		
+
 		textField_4 = new JTextField();
-		textField_4.setBounds(145, 143, 86, 20);
+		textField_4.setForeground(Color.BLACK);
+		textField_4.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		textField_4.setBounds(543, 365, 179, 36);
 		frame.getContentPane().add(textField_4);
 		textField_4.setColumns(10);
-		
+
 		textField_5 = new JTextField();
-		textField_5.setBounds(145, 168, 86, 20);
+		textField_5.setForeground(Color.BLACK);
+		textField_5.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		textField_5.setBounds(543, 414, 179, 36);
 		frame.getContentPane().add(textField_5);
 		textField_5.setColumns(10);
-		
+
+		JLabel lblCov = new JLabel("COV :");
+		lblCov.setForeground(Color.WHITE);
+		lblCov.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblCov.setBounds(401, 460, 98, 36);
+		frame.getContentPane().add(lblCov);
+
+		textField_6 = new JTextField();
+		textField_6.setForeground(Color.BLACK);
+		textField_6.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		textField_6.setBounds(543, 463, 179, 36);
+		frame.getContentPane().add(textField_6);
+		textField_6.setColumns(10);
+
 		JButton btnSubmit = new JButton("Submit");
-		btnSubmit.setBounds(177, 209, 89, 23);
+		btnSubmit.setFont(new Font("Sylfaen", Font.PLAIN, 20));
+		btnSubmit.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+
+				if (e.getSource() == btnSubmit)
+				{
+					try
+			        { 
+						 Class.forName("com.mysql.jdbc.Driver"); 
+				            Connection conn = null;
+				            conn = DriverManager.getConnection("jdbc:mysql://localhost/rto","root", ""); 
+				            System.out.print("Database is connected !");
+				            Statement stmt = conn.createStatement();
+
+				            String q1 = "insert into transfer values( "+textField.getText() +  
+				                                    "," + textField_1.getText()+","+textField_2.getText()+
+				                                    ",'"+textField_3.getText()+"','"+textField_4.getText()+
+				                                    "','"+textField_5.getText()+"','"+textField_6.getText()+"')";
+				            int a=stmt.executeUpdate(q1);
+				            conn.close(); 
+			        } 
+			        catch(Exception ex) 
+			        { 
+			            System.out.println(ex); 
+			        }
+			        }
+			}
+		});
+		btnSubmit.setBounds(564, 568, 130, 45);
 		frame.getContentPane().add(btnSubmit);
-		
+
 		JButton btnPrev = new JButton("prev");
+		btnPrev.setBackground(new Color(255, 255, 102));
+		btnPrev.setFont(new Font("Sylfaen", Font.PLAIN, 20));
 		btnPrev.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				frame.setVisible(false);
+				Transfer t=new Transfer();
+				t.frame.setVisible(true);
 			}
 		});
-		btnPrev.setBounds(0, 228, 59, 25);
+		btnPrev.setBounds(0, 650, 98, 36);
 		frame.getContentPane().add(btnPrev);
-	}
+		
+		JLabel lblNewLabel_1 = new JLabel("New label");
+		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\LC\\eclipse-workspace\\RTOproject\\images\\pic8alter - Copy.png"));
+		lblNewLabel_1.setBounds(0, -1, 1182, 686);
+		frame.getContentPane().add(lblNewLabel_1);
 
+
+	}
 }
